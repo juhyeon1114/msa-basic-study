@@ -16,7 +16,13 @@ spring:
           uri: lb://USER-SERVICE
           predicates:
             - Path=/user/**
+          filters:
+            - UserServiceFilter
         - id: business-service
           uri: lb://BUSINESS-SERVICE
           predicates:
             - Path=/business/**
+      default-filters:
+        - name: LogFilter # 필터 컴포넌트의 클래스 명
+          args:
+            message: Hello LogFilter
